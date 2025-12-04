@@ -6,7 +6,6 @@ async def verify_tables():
     print("🔌 Conectando ao SQL Server...")
     
     async with engine.connect() as conn:
-        # O 'inspect' é síncrono, então usamos run_sync para rodá-lo dentro do async
         tables = await conn.run_sync(
             lambda sync_conn: inspect(sync_conn).get_table_names()
         )
@@ -31,3 +30,4 @@ async def verify_tables():
 
 if __name__ == "__main__":
     asyncio.run(verify_tables())
+    
